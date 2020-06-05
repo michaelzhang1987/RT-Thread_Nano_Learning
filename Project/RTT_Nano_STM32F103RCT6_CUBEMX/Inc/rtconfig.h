@@ -56,7 +56,7 @@
 
 // <c1>thread stack over flow detect
 //  <i> Diable Thread stack over flow detect
-//#define RT_USING_OVERFLOW_CHECK
+#define RT_USING_OVERFLOW_CHECK
 // </c>
 // </h>
 
@@ -95,7 +95,7 @@
 
 // <c1>Using Mutex
 //  <i>Using Mutex
-//#define RT_USING_MUTEX
+#define RT_USING_MUTEX
 // </c>
 
 // <c1>Using Event
@@ -117,7 +117,7 @@
 // <h>Memory Management Configuration
 // <c1>Dynamic Heap Management
 //  <i>Dynamic Heap Management
-//#define RT_USING_HEAP
+#define RT_USING_HEAP
 // </c>
 // <c1>using small memory
 //  <i>using small memory
@@ -163,12 +163,12 @@
 // <o>the stack of finsh thread <1-4096>
 //  <i>the stack of finsh thread
 //  <i>Default: 512  (512Byte)
-#define FINSH_THREAD_STACK_SIZE     512
+#define FINSH_THREAD_STACK_SIZE     2048
 
 // <o>the history lines of finsh thread <1-32>
 //  <i>the history lines of finsh thread
 //  <i>Default: 5
-#define FINSH_HISTORY_LINES         1
+#define FINSH_HISTORY_LINES         8
 
 // <c1>Using symbol table in finsh shell
 //  <i>Using symbol table in finsh shell

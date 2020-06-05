@@ -65,8 +65,11 @@ RT_WEAK void *rt_heap_end_get(void)
  */
 void rt_hw_board_init()
 {
-    uart_init();
-    
+   uart_init();
+//    HAL_Init();
+//    MX_GPIO_Init();
+//    MX_USART3_UART_Init();
+    FinshIoInit();
     /* System Clock Update */
     SystemCoreClockUpdate();
     

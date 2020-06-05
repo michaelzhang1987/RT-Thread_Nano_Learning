@@ -79,7 +79,7 @@ int main(void)
   /* USER CODE END Init */
 
   /* Configure the system clock */
-  SystemClock_Config();
+  //SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
 
@@ -87,7 +87,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART3_UART_Init();
+//  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -97,10 +97,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_RESET);
-    rt_kprintf("hello world\r\n");
-    rt_thread_mdelay(100);
-    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_SET);
+//    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_RESET);
+////    rt_kprintf("hello world\r\n");
+//    rt_thread_mdelay(100);
+//    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_SET);
     rt_thread_mdelay(100);
     /* USER CODE BEGIN 3 */
   }

@@ -1193,10 +1193,10 @@
                 <name>$PROJ_DIR$\..\CODE\RTT_Nano_Include.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\CODE\RTT_Uart_Console.c</name>
+                <name>$PROJ_DIR$\..\CODE\RTT_Uart_Console_IT.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\CODE\RTT_Uart_Console.h</name>
+                <name>$PROJ_DIR$\..\CODE\RTT_Uart_Console_IT.h</name>
             </file>
         </group>
         <group>

@@ -17,8 +17,8 @@
 #include <rthw.h>
 #include <rtthread.h>
 #include "string.h"
-#include "RTT_Uart_Console.h"
-//#include "RTT_Uart_Console_IT.h"
+//#include "RTT_Uart_Console.h"
+#include "RTT_Uart_Console_IT.h"
 // #include "General_UART.h"//必须放在前面
 // #include "Modbus_Master_RTU.h"
 // #include "General_SYS_time.h"

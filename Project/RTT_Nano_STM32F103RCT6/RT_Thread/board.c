@@ -12,7 +12,9 @@
 #include <stdint.h>
 #include <rthw.h>
 #include <rtthread.h>
-
+   
+#include "RTT_Nano_Include.h"
+   
 #define _SCB_BASE       (0xE000E010UL)
 #define _SYSTICK_CTRL   (*(rt_uint32_t *)(_SCB_BASE + 0x0))
 #define _SYSTICK_LOAD   (*(rt_uint32_t *)(_SCB_BASE + 0x4))
@@ -65,6 +67,8 @@ void rt_hw_board_init()
 {
     /* System Clock Update */
     SystemCoreClockUpdate();
+    
+    uart_init();             // 在 rt_hw_board_init 函数中调用 串口初始化 函数
     
     /* System Tick Configuration */
     _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);

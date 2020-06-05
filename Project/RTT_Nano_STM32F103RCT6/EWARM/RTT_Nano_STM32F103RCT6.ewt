@@ -1196,6 +1196,9 @@
         <group>
             <name>User</name>
             <file>
+                <name>$PROJ_DIR$\..\Src\can.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\gpio.c</name>
             </file>
             <file>
@@ -1207,7 +1210,22 @@
             <file>
                 <name>$PROJ_DIR$\..\Src\stm32f1xx_it.c</name>
             </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\usart.c</name>
+            </file>
         </group>
+    </group>
+    <group>
+        <name>Code</name>
+        <file>
+            <name>$PROJ_DIR$\..\Code\RTT_Nano_Include.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Code\RTT_Uart_Console.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Code\RTT_Uart_Console.h</name>
+        </file>
     </group>
     <group>
         <name>Drivers</name>
@@ -1221,6 +1239,9 @@
             <name>STM32F1xx_HAL_Driver</name>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_can.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cortex.c</name>
@@ -1254,6 +1275,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim_ex.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_uart.c</name>
             </file>
         </group>
     </group>

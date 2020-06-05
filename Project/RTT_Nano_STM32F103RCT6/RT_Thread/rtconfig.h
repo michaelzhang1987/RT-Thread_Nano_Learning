@@ -127,6 +127,8 @@
 #define RT_CONSOLEBUF_SIZE          512
 // </h>
 
+#define RT_USING_FINSH
+
 #if defined(RT_USING_FINSH)
     #define FINSH_USING_MSH
     #define FINSH_USING_MSH_ONLY

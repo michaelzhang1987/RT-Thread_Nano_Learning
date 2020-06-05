@@ -1282,6 +1282,30 @@
         </group>
     </group>
     <group>
+        <name>Finsh</name>
+        <file>
+            <name>$PROJ_DIR$\..\finsh\cmd.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\finsh\finsh.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\finsh\finsh_api.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\finsh\msh.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\finsh\msh.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\finsh\shell.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\finsh\shell.h</name>
+        </file>
+    </group>
+    <group>
         <name>RT-Thread</name>
         <file>
             <name>$PROJ_DIR$\..\RT_Thread\board.c</name>

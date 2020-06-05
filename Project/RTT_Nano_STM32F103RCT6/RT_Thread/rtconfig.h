@@ -104,7 +104,7 @@
 // <h>Memory Management Configuration
 // <c1>Dynamic Heap Management
 //  <i>Dynamic Heap Management
-//#define RT_USING_HEAP
+#define RT_USING_HEAP
 // </c>
 // <c1>using small memory
 //  <i>using small memory
@@ -124,7 +124,7 @@
 // <o>the buffer size of console <1-1024>
 //  <i>the buffer size of console
 //  <i>Default: 128  (128Byte)
-#define RT_CONSOLEBUF_SIZE          128
+#define RT_CONSOLEBUF_SIZE          512
 // </h>
 
 #if defined(RT_USING_FINSH)
@@ -139,7 +139,7 @@
     // <o>the stack of finsh thread <1-4096>
     //  <i>the stack of finsh thread
     //  <i>Default: 4096  (4096Byte)
-    #define FINSH_THREAD_STACK_SIZE     512
+    #define FINSH_THREAD_STACK_SIZE     2048
     // <o>the history lines of finsh thread <1-32>
     //  <i>the history lines of finsh thread
     //  <i>Default: 5

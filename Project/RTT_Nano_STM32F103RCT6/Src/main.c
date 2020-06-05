@@ -42,7 +42,7 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "rtthread.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -105,10 +105,14 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
+//    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_RESET);
+//    HAL_Delay(200);
+//    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_SET);
+//    HAL_Delay(200);
     HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_RESET);
-    HAL_Delay(200);
+    rt_thread_mdelay(500);
     HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_SET);
-    HAL_Delay(200);
+    rt_thread_mdelay(500);
   }
   /* USER CODE END 3 */
 

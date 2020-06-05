@@ -3,14 +3,7 @@
 #ifndef __RTTHREAD_CFG_H__
 #define __RTTHREAD_CFG_H__
 
-#if defined(__CC_ARM) || defined(__CLANG_ARM)
-#include "RTE_Components.h"
-
-#if defined(RTE_USING_FINSH)
 #define RT_USING_FINSH
-#endif //RTE_USING_FINSH
-
-#endif //(__CC_ARM) || (__CLANG_ARM)
 
 // <<< Use Configuration Wizard in Context Menu >>>
 // <h>Basic Configuration
@@ -126,8 +119,6 @@
 //  <i>Default: 128  (128Byte)
 #define RT_CONSOLEBUF_SIZE          512
 // </h>
-
-#define RT_USING_FINSH
 
 #if defined(RT_USING_FINSH)
     #define FINSH_USING_MSH

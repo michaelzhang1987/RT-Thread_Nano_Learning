@@ -80,7 +80,7 @@ static void Demo_Ctrl(void)
       rt_thread_startup(tid);
     }
 }
-/* 导出到 msh 命令列表中 */
+
 MSH_CMD_EXPORT(Demo_Ctrl, DemoCtrl);
 /* USER CODE END 0 */
 
@@ -122,13 +122,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-//    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_RESET);
-////    rt_kprintf("hello world\r\n");
-//    rt_thread_mdelay(100);
-//    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_SET);
-
-    rt_thread_mdelay(100);
+    
     /* USER CODE BEGIN 3 */
+    rt_thread_mdelay(100);
   }
   /* USER CODE END 3 */
 }

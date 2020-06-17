@@ -1190,6 +1190,12 @@
         <group>
             <name>CODE</name>
             <file>
+                <name>$PROJ_DIR$\..\CODE\EEROM_STM32_Flash.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\CODE\EEROM_STM32_Flash.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\CODE\RTT_Nano_Include.h</name>
             </file>
             <file>
@@ -1197,6 +1203,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\CODE\RTT_Tartget_OutPut.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\CODE\RTT_Tartget_System_State.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\CODE\RTT_Tartget_System_State.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\CODE\RTT_Uart_Console_IT.c</name>

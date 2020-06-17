@@ -27,7 +27,8 @@ int uart_init(void)
     return 0;
 }
 
-INIT_BOARD_EXPORT(uart_init);
+//INIT_BOARD_EXPORT(uart_init);
+
 /******RingBuffer-Begin******/
 #define rt_ringbuffer_space_len(rb) ((rb)->buffer_size - rt_ringbuffer_data_len(rb))
 

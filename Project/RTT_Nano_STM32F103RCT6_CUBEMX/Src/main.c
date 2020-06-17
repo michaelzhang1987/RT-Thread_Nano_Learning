@@ -56,7 +56,32 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+static void Output_Ctrl_entry(void* parameter)
+{
+  uint8_t times = 10;
+    while(times--)
+    {
+      rt_kprintf("this is first thread!\r\n");
+      rt_thread_mdelay(1000);
+    }
+}
 
+static void Demo_Ctrl(void)
+{
+    static rt_thread_t tid;
+    tid = rt_thread_create("Output_Ctrl",
+                            Output_Ctrl_entry,
+                            RT_NULL,
+                            512,
+                            20,
+                            10);
+    if(tid != RT_NULL)
+    {
+      rt_thread_startup(tid);
+    }
+}
+/* 导出到 msh 命令列表中 */
+MSH_CMD_EXPORT(Demo_Ctrl, DemoCtrl);
 /* USER CODE END 0 */
 
 /**
@@ -72,7 +97,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+//  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -86,7 +111,7 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
+//  MX_GPIO_Init();
 //  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 
@@ -101,6 +126,7 @@ int main(void)
 ////    rt_kprintf("hello world\r\n");
 //    rt_thread_mdelay(100);
 //    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_SET);
+
     rt_thread_mdelay(100);
     /* USER CODE BEGIN 3 */
   }

@@ -32,11 +32,11 @@
                 </option>
                 <option>
                     <name>Input description</name>
-                    <state>No specifier n, no float nor long long, no scan set, no assignment suppressing, with multibyte support.</state>
+                    <state>Full formatting, with multibyte support.</state>
                 </option>
                 <option>
                     <name>Output description</name>
-                    <state>No specifier a, A, no specifier n, no float nor long long, with multibyte support.</state>
+                    <state>Full formatting, with multibyte support.</state>
                 </option>
                 <option>
                     <name>GOutputBinary</name>
@@ -1052,6 +1052,12 @@
                 <name>$PROJ_DIR$\..\CODE\RTT_Nano_Include.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\CODE\RTT_Tartget_OutPut.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\CODE\RTT_Tartget_OutPut.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\CODE\RTT_Uart_Console_IT.c</name>
             </file>
             <file>
@@ -1198,6 +1204,12 @@
                     <name>$PROJ_DIR$\..\Middlewares\Third_Party\RealThread_RTOS_RT-Thread\components\finsh\shell.c</name>
                 </file>
             </group>
+            <file>
+                <name>$PROJ_DIR$\..\Inc\rtconfig.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\RealThread_RTOS_RT-Thread\include\rtthread.h</name>
+            </file>
         </group>
     </group>
 </project>

@@ -21,14 +21,14 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "RTT_Nano_Include.h"
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart3;
 
 /* USART3 init function */
 
-void MX_USART3_UART_Init(void)
+int MX_USART3_UART_Init(void)
 {
 
   huart3.Instance = USART3;
@@ -43,8 +43,9 @@ void MX_USART3_UART_Init(void)
   {
     Error_Handler();
   }
-
+  return 0;
 }
+INIT_BOARD_EXPORT(MX_USART3_UART_Init);
 
 void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
 {

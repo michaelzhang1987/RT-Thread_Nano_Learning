@@ -9,6 +9,7 @@
 //#if defined(RTE_USING_FINSH)
 #define RT_USING_FINSH
 //#endif  //RTE_USING_FINSH
+
 //#endif  //(__CC_ARM) || (__CLANG_ARM)
 
 // <<< Use Configuration Wizard in Context Menu >>>
@@ -27,7 +28,7 @@
 
 // <o>the max length of object name<2-16>
 //  <i>Default: 8
-#define RT_NAME_MAX 8
+#define RT_NAME_MAX 16
 
 // <c1>Using RT-Thread components initialization
 //  <i>Using RT-Thread components initialization
@@ -41,7 +42,7 @@
 
 // <o>the size of main thread<1-4086>
 //  <i>Default: 512
-#define RT_MAIN_THREAD_STACK_SIZE 1024
+#define RT_MAIN_THREAD_STACK_SIZE 2048
 // </h>
 
 // <h>Debug Configuration
@@ -100,17 +101,17 @@
 
 // <c1>Using Event
 //  <i>Using Event
-//#define RT_USING_EVENT
+#define RT_USING_EVENT
 // </c>
 
 // <c1>Using MailBox
 //  <i>Using MailBox
-//#define RT_USING_MAILBOX
+#define RT_USING_MAILBOX
 // </c>
 
 // <c1>Using Message Queue
 //  <i>Using Message Queue
-//#define RT_USING_MESSAGEQUEUE
+#define RT_USING_MESSAGEQUEUE
 // </c>
 // </h>
 
@@ -168,7 +169,7 @@
 // <o>the history lines of finsh thread <1-32>
 //  <i>the history lines of finsh thread
 //  <i>Default: 5
-#define FINSH_HISTORY_LINES         8
+#define FINSH_HISTORY_LINES         5
 
 // <c1>Using symbol table in finsh shell
 //  <i>Using symbol table in finsh shell

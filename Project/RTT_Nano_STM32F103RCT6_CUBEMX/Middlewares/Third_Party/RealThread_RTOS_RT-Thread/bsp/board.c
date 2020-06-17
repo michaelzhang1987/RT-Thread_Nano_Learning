@@ -47,7 +47,7 @@ static uint32_t _SysTick_Config(rt_uint32_t ticks)
 }
 
 #if defined(RT_USING_USER_MAIN) && defined(RT_USING_HEAP)
-#define RT_HEAP_SIZE 1024
+#define RT_HEAP_SIZE 4096
 static uint32_t rt_heap[RT_HEAP_SIZE];     // heap default size: 4K(1024 * 4)
 RT_WEAK void *rt_heap_begin_get(void)
 {
@@ -65,13 +65,16 @@ RT_WEAK void *rt_heap_end_get(void)
  */
 void rt_hw_board_init()
 {
-   uart_init();
-//    HAL_Init();
-//    MX_GPIO_Init();
-//    MX_USART3_UART_Init();
-    FinshIoInit();
+   //uart_init();
+
+    
     /* System Clock Update */
     SystemCoreClockUpdate();
+    
+    HAL_Init();
+    MX_GPIO_Init();
+    MX_USART3_UART_Init();
+    FinshIoInit();
     
     /* System Tick Configuration */
     _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);

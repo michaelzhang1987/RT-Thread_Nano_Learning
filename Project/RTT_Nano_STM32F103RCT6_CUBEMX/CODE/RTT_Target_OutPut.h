@@ -51,6 +51,7 @@ extern OUtPUT_Ctrl_Struct OUtPUT_Ctrl;
 
 //********************函数原型********************//
 void Scan_Ctrl_RunLight(void);
-
-void OUTPUT_TASK_CTRL(void *pvParameters);
+void Output_Ctrl_entry(void* parameter);
+void test1_entry(void *parameter);
+void test2_entry(void *parameter);
 #endif

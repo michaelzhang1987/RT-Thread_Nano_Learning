@@ -1196,19 +1196,28 @@
                 <name>$PROJ_DIR$\..\CODE\EEROM_STM32_Flash.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\CODE\General_Definition_MGQ.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\CODE\RTT_Nano_Include.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\CODE\RTT_Tartget_OutPut.c</name>
+                <name>$PROJ_DIR$\..\CODE\RTT_Target_Group_Ctrl.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\CODE\RTT_Tartget_OutPut.h</name>
+                <name>$PROJ_DIR$\..\CODE\RTT_Target_Group_Ctrl.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\CODE\RTT_Tartget_System_State.c</name>
+                <name>$PROJ_DIR$\..\CODE\RTT_Target_OutPut.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\CODE\RTT_Tartget_System_State.h</name>
+                <name>$PROJ_DIR$\..\CODE\RTT_Target_OutPut.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\CODE\RTT_Target_System_State.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\CODE\RTT_Target_System_State.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\CODE\RTT_Uart_Console_IT.c</name>
@@ -1226,6 +1235,9 @@
         <group>
             <name>User</name>
             <file>
+                <name>$PROJ_DIR$\..\Src\can.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\gpio.c</name>
             </file>
             <file>
@@ -1236,6 +1248,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\stm32f1xx_it.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\tim.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\usart.c</name>
@@ -1254,6 +1269,9 @@
             <name>STM32F1xx_HAL_Driver</name>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_can.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cortex.c</name>
@@ -1365,4 +1383,10 @@
             </file>
         </group>
     </group>
+    <file>
+        <name>$PROJ_DIR$\..\CODE\RTT_Target_InPut.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\..\CODE\RTT_Target_InPut.h</name>
+    </file>
 </project>

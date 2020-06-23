@@ -1,15 +1,20 @@
 #ifndef __RTT_Tartget_System_State_H
 #define __RTT_Tartget_System_State_H
 
+/* 输出任务定义 */
+#define OUTPUT_THREAD_PRIORITY         20
+#define OUTPUT_THREAD_STACK_SIZE       256
+#define OUTPUT_THREAD_TIMESLICE        5
+
 /* 空闲任务定义 */
-#define FREE_TASK_PRIO 8              /* 任务优先级         */
-#define FREE_TASK_STK_SIZE 128        /* 任务堆栈大小       */
-//extern TaskHandle_t FREE_TASK_HANDLE; /* 任务句柄           */
+#define FREE_THREAD_PRIORITY           19
+#define FREE_THREAD_STACK_SIZE         512
+#define FREE_THREAD_TIMESLICE          20
 
 /* 目标板任务定义 */
-#define GJR_TASK_PRIO 7              /* 任务优先级         */
-#define GJR_TASK_STK_SIZE 128        /* 任务堆栈大小       */
-//extern TaskHandle_t GJR_TASK_HANDLE; /* 任务句柄           */
+#define GJR_TARGET_THREAD_PRIORITY         5
+#define GJR_TARGET_THREAD_STACK_SIZE       512
+#define GJR_TARGET_THREAD_TIMESLICE        20
 
 #define setbit(x,y) x |= (1<<y) //将X的第Y位置1
 #define clrbit(x,y) x &= ~(1<<y) //将X的第Y位清0
@@ -78,7 +83,8 @@ void Init_SYS_Ctrl_Struct(void);
 void Init_System_Work(void);
 void System_Power_ON(void); //1
 
-void FREE_TASK_CTRL(void *pvParameters);
-
+ void Free_Ctrl_entry(void* parameter);
+ void SYS_START_TASK(void);
+  void timerout1(void *parameter);
 void ResetLastTargetTest_Results(void);
 #endif //Battery_Car_System_State.h

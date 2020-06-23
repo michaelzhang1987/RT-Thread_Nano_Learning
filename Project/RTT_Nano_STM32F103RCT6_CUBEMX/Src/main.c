@@ -20,6 +20,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "can.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -56,32 +58,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-static void Output_Ctrl_entry(void* parameter)
-{
-  uint8_t times = 10;
-    while(times--)
-    {
-      rt_kprintf("this is first thread!\r\n");
-      rt_thread_mdelay(1000);
-    }
-}
 
-static void Demo_Ctrl(void)
-{
-    static rt_thread_t tid;
-    tid = rt_thread_create("Output_Ctrl",
-                            Output_Ctrl_entry,
-                            RT_NULL,
-                            512,
-                            20,
-                            10);
-    if(tid != RT_NULL)
-    {
-      rt_thread_startup(tid);
-    }
-}
 
-MSH_CMD_EXPORT(Demo_Ctrl, DemoCtrl);
 /* USER CODE END 0 */
 
 /**
@@ -104,7 +82,7 @@ int main(void)
   /* USER CODE END Init */
 
   /* Configure the system clock */
-  //SystemClock_Config();
+//  SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
 
@@ -113,8 +91,15 @@ int main(void)
   /* Initialize all configured peripherals */
 //  MX_GPIO_Init();
 //  MX_USART3_UART_Init();
+//  MX_CAN_Init();
+//  MX_TIM1_Init();
+//  MX_TIM8_Init();
+//  MX_UART4_Init();
+//  MX_UART5_Init();
+//  MX_USART1_UART_Init();
+//  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+   SYS_START_TASK();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -122,9 +107,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    
+
     /* USER CODE BEGIN 3 */
-    rt_thread_mdelay(100);
+    rt_thread_mdelay(10);
   }
   /* USER CODE END 3 */
 }

@@ -1,18 +1,16 @@
-// /*******************************************************************************
-                                // 包含头文件
-// *******************************************************************************/
-// #include "RTT_Nano_Include.h"
+ /*******************************************************************************
+                                 包含头文件
+ *******************************************************************************/
+ #include "RTT_Nano_Include.h"
 
-// /*******************************************************************************
-                                // 全局变量
-// *******************************************************************************/
-// SYS_Enum SYSTEM_STATE;                 //系统运行状态
-// SYS_Ctrl_Struct SYSTEN_CTRL_PARAMETER; //系统控制参数
-// SYS_Run_Struct SYSTEN_RUN_PARAMETER;   //系统运行参数
-// SYS_Enum SYSTEM_STATE_Will;            //行走系统运行状态
+ /*******************************************************************************
+                                 全局变量
+ *******************************************************************************/
+ SYS_Enum SYSTEM_STATE;                 //系统运行状态
+ SYS_Ctrl_Struct SYSTEN_CTRL_PARAMETER; //系统控制参数
+ SYS_Run_Struct SYSTEN_RUN_PARAMETER;   //系统运行参数
+ SYS_Enum SYSTEM_STATE_Will;            //行走系统运行状态
 
-// TaskHandle_t FREE_TASK_HANDLE;
-// TaskHandle_t GJR_TASK_HANDLE; /* 任务句柄           */
 // /*
 // ********************************************************************************
 // * 函数名: void Init_SYS_Ctrl_Struct(void)
@@ -110,77 +108,91 @@
   // CAN_Send_DroneControlCMD(1);//启动靶标
 // }
 
-// /*
-// ********************************************************************************
-// * 函数名: void SYS_START_TASK(void)
-// * 说  明: 创建系统任务
-// * 注  意：
-// * 参  数:
-// * 返回值:
-// * 设  计: MGQ
-// * 日  期: 20191012
-// * 修  改:
-// ********************************************************************************
-// */
-
-// void SYS_START_TASK(void)
-// {
+ /*
+ ********************************************************************************
+ * 函数名: void SYS_START_TASK(void)
+ * 说  明: 创建系统任务
+ * 注  意：
+ * 参  数:
+ * 返回值:
+ * 设  计: MGQ
+ * 日  期: 20191012
+ * 修  改:
+ ********************************************************************************
+ */
+ void SYS_START_TASK(void)
+ {
   // //  /* 创建Can发送队列 */
   // //  CAN_TX_Queue = xQueueCreate(CAN_TX_QUEUE_LENGTH,     /* 队列中有多少列      */
   // //                              CAN_TX_QUEUE_SIZE);      /* 每个列大小          */
   // //  /* 创建Uart发送队列 */
   // //  UART_TX_Queue = xQueueCreate(UART_TX_QUEUE_LENGTH,   /* 队列中有多少列      */
   // //                              UART_TX_QUEUE_SIZE);     /* 每个列大小          */
-  // /* 输出控制任务 */
-  // xTaskCreate((TaskFunction_t)OUTPUT_TASK_CTRL,   /* 任务函数            */
-              // (const char *)"OutCtrl",            /* 任务名称            */
-              // (uint16_t)OUT_TASK_STK_SIZE,        /* 任务堆栈            */
-              // (void *)NULL,                       /* 传递给任务函数的参数*/
-              // (UBaseType_t)OUT_TASK_PRIO,         /* 任务优先级          */
-              // (TaskHandle_t *)&OUT_TASK_HANDLE);  /* 任务句柄            */
-                                                  // /* 空闲任务 */
-  // xTaskCreate((TaskFunction_t)FREE_TASK_CTRL,     /* 任务函数            */
-              // (const char *)"SYS_FREE",           /* 任务名称            */
-              // (uint16_t)FREE_TASK_STK_SIZE,       /* 任务堆栈            */
-              // (void *)NULL,                       /* 传递给任务函数的参数*/
-              // (UBaseType_t)FREE_TASK_PRIO,        /* 任务优先级          */
-              // (TaskHandle_t *)&FREE_TASK_HANDLE); /* 任务句柄            */
+   /* 输出控制任务 */
+    rt_thread_t tid1 = rt_thread_create("Output_Ctrl",                  /* 任务名称            */
+                                       Output_Ctrl_entry,               /* 任务函数            */
+                                       RT_NULL,                         /* 传递给任务函数的参数*/
+                                       OUTPUT_THREAD_STACK_SIZE,        /* 任务堆栈            */
+                                       OUTPUT_THREAD_PRIORITY,          /* 任务优先级          */
+                                       OUTPUT_THREAD_TIMESLICE);        /* 时间片             */
+    if(tid1 != RT_NULL) {rt_thread_startup(tid1);}
+    
+    /* 空闲控制任务 */
+    rt_thread_t tid2 = rt_thread_create("Free_Ctrl",                   /* 任务名称            */
+                                       Free_Ctrl_entry,                /* 任务函数            */
+                                       RT_NULL,                        /* 传递给任务函数的参数*/
+                                       FREE_THREAD_STACK_SIZE,         /* 任务堆栈            */
+                                       FREE_THREAD_PRIORITY,           /* 任务优先级          */
+                                       FREE_THREAD_TIMESLICE);         /* 时间片             */
+    if(tid2 != RT_NULL) {rt_thread_startup(tid1);}
 
-  // switch (SYSTEN_RUN_PARAMETER.Target_ID)
-  // {
-  // /* 丛林大营救目标组 */
-  // case 1:
-    // xTaskCreate((TaskFunction_t)GJR_FACTORY_BOILERS_TASK_CTRL, /* 任务函数            */
-                // (const char *)"GJR_FactoryBoilers",           /* 任务名称            */
-                // (uint16_t)GJR_TASK_STK_SIZE,       /* 任务堆栈            */
-                // (void *)NULL,                             /* 传递给任务函数的参数*/
-                // (UBaseType_t)GJR_TASK_PRIO,        /* 任务优先级          */
-                // (TaskHandle_t *)&GJR_TASK_HANDLE);    /* 任务句柄            */
-    // break;
-  // case 2:
-    // xTaskCreate((TaskFunction_t)GJR_LITTLE_HOME_TASK_CTRL, /* 任务函数            */
-                // (const char *)"GJR_LittileHome",           /* 任务名称            */
-                // (uint16_t)GJR_TASK_STK_SIZE,       /* 任务堆栈            */
-                // (void *)NULL,                             /* 传递给任务函数的参数*/
-                // (UBaseType_t)GJR_TASK_PRIO,        /* 任务优先级          */
-                // (TaskHandle_t *)&GJR_TASK_HANDLE);    /* 任务句柄            */
-    // break;
-  // case 3:
-    // xTaskCreate((TaskFunction_t)GJR_TREE_HOUSE_TASK_CTRL, /* 任务函数            */
-                // (const char *)"GJR_TreeHouse",           /* 任务名称            */
-                // (uint16_t)GJR_TASK_STK_SIZE,         /* 任务堆栈            */
-                // (void *)NULL,                               /* 传递给任务函数的参数*/
-                // (UBaseType_t)GJR_TASK_PRIO,          /* 任务优先级          */
-                // (TaskHandle_t *)&GJR_TASK_HANDLE);      /* 任务句柄            */
-    // break;
-  // case 4:
-    // xTaskCreate((TaskFunction_t)GJR_PULLBOW_RABBIT_TASK_CTRL, /* 任务函数            */
-                // (const char *)"GJR_Pull-BowRabbit",           /* 任务名称            */
-                // (uint16_t)GJR_TASK_STK_SIZE,         /* 任务堆栈            */
-                // (void *)NULL,                               /* 传递给任务函数的参数*/
-                // (UBaseType_t)GJR_TASK_PRIO,          /* 任务优先级          */
-                // (TaskHandle_t *)&GJR_TASK_HANDLE);      /* 任务句柄            */
-    // break;
+   switch (SYSTEN_RUN_PARAMETER.Target_ID)
+   {
+   /* 丛林大营救目标组 */
+   case 1:
+   {
+     rt_thread_t tid3 = rt_thread_create("GJR_FactoryBoilers",      /* 任务名称            */
+                                       GJR_FACTORY_BOILERS_Ctrl_entry,  /* 任务函数            */
+                                       RT_NULL,                         /* 传递给任务函数的参数*/
+                                       GJR_TARGET_THREAD_STACK_SIZE,     /* 任务堆栈            */
+                                       GJR_TARGET_THREAD_PRIORITY,   /* 任务优先级          */
+                                       GJR_TARGET_THREAD_TIMESLICE);   /* 时间片             */
+     if(tid3 != RT_NULL) {rt_thread_startup(tid3);}
+   }
+   break;
+   case 2:
+   {
+     rt_thread_t tid4 = rt_thread_create("GJR_LittileHome",      /* 任务名称            */
+                                       GJR_LITTLE_HOME_Ctrl_entry,  /* 任务函数            */
+                                       RT_NULL,                         /* 传递给任务函数的参数*/
+                                       GJR_TARGET_THREAD_STACK_SIZE,     /* 任务堆栈            */
+                                       GJR_TARGET_THREAD_PRIORITY,   /* 任务优先级          */
+                                       GJR_TARGET_THREAD_TIMESLICE);   /* 时间片             */
+     if(tid4 != RT_NULL) {rt_thread_startup(tid4);}
+   }
+    break;
+   case 3:
+   {
+     rt_thread_t tid5 = rt_thread_create("GJR_TreeHouse",      /* 任务名称            */
+                                       GJR_TREE_HOUSE_Ctrl_entry,  /* 任务函数            */
+                                       RT_NULL,                         /* 传递给任务函数的参数*/
+                                       GJR_TARGET_THREAD_STACK_SIZE,     /* 任务堆栈            */
+                                       GJR_TARGET_THREAD_PRIORITY,   /* 任务优先级          */
+                                       GJR_TARGET_THREAD_TIMESLICE);   /* 时间片             */
+     if(tid5 != RT_NULL) {rt_thread_startup(tid5);}
+   }
+    break;
+   case  4:
+   {
+     rt_thread_t tid6 = rt_thread_create("GJR_Pull-BowRabbit",      /* 任务名称            */
+                                       GJR_PULLBOW_RABBIT_Ctrl_entry,  /* 任务函数            */
+                                       RT_NULL,                         /* 传递给任务函数的参数*/
+                                       GJR_TARGET_THREAD_STACK_SIZE,     /* 任务堆栈            */
+                                       GJR_TARGET_THREAD_PRIORITY,   /* 任务优先级          */
+                                       GJR_TARGET_THREAD_TIMESLICE);   /* 时间片             */
+     if(tid6 != RT_NULL) {rt_thread_startup(tid6);}
+   }
+    break; 
   // case 5:
     // xTaskCreate((TaskFunction_t)GJR_PELICAN_TASK_CTRL, /* 任务函数            */
                 // (const char *)"GJR_Pelican",           /* 任务名称            */
@@ -301,7 +313,7 @@
                 // (UBaseType_t)GJR_TASK_PRIO,            /* 任务优先级          */
                 // (TaskHandle_t *)&GJR_TASK_HANDLE);        /* 任务句柄            */
     // break;
-  // }
+   }
 
   // //  /* 音频控制任务 */
   // //  xTaskCreate((TaskFunction_t )AUDIO_TASK_CTRL,        /* 任务函数            */
@@ -337,28 +349,42 @@
   // //              (uint16_t       )UART_TASK_RX_STK_SIZE,  /* 任务堆栈            */
   // //              (void*          )NULL,                   /* 传递给任务函数的参数*/
   // //              (UBaseType_t    )UART_TASK_RX_PRIO,      /* 任务优先级          */
-  // //              (TaskHandle_t*  )&UART_TASK_RX_HANDLE);  /* 任务句柄            */
-// }
+  // //              (TaskHandle_t*  )&UART_TASK_RX_HANDLE);  /* 任务句柄   
 
-// /*
-// ********************************************************************************
-// * 函数名: void System_Free_Dispose(void)
-// * 说  明: 系统空闲运行
-// * 参  数: N/A
-// * 返回值: N/A
-// * 设  计: MGQ
-// * 日  期: 20181020
-// * 修  改:
-// ********************************************************************************
-// */
+         /* 200ms周期定时器 */
+         rt_timer_t tim1 = rt_timer_create("timer1",              /* 定时器名称            */
+                                       timerout1,                 /* 定时器函数            */
+                                       RT_NULL,                   /* 传递给定时器函数的参数*/
+                                       200,                        /* 时间            */
+                                       RT_TIMER_FLAG_PERIODIC);   /* 周期           */
+//     if(tim1 != RT_NULL) {rt_timer_start(tim1);}
+ }
+
+ 
+ void timerout1(void *parameter)
+ {
+     LED_ROLLOVER();
+//     rt_kprintf("timer1 is running!\r\n");
+ }
+ /*
+ ********************************************************************************
+ * 函数名: void System_Free_Dispose(void)
+ * 说  明: 系统空闲运行
+ * 参  数: N/A
+ * 返回值: N/A
+ * 设  计: MGQ
+ * 日  期: 20181020
+ * 修  改:
+ ********************************************************************************
+ */
+ void Free_Ctrl_entry(void* parameter)
+{
+ 
+}
 // uint8_t test[5] = {1, 2, 3, 4, 5};
 // void FREE_TASK_CTRL(void *pvParameters)
 // {
-  // while (1)
-  // {
-// //    Zigbee_send(test, 5);
-    // SCREEN_UartToRS485_send(test, 5);
-    // vTaskDelay(500);
+
     // /********************************CAN处理*************************************/
     // //can接收处理
     // if (CAN_RxBuffer.pRead != CAN_RxBuffer.pWrite)
@@ -495,14 +521,7 @@
 // * 修  改:
 // ********************************************************************************
 // */
-// void System_Power_ON(void)
-// {
-  // Zigbee_TX_Delay.Flag.PowerOn = 1;
-  // Zigbee_TX_Delay.Send_counter = 3;
 
-  // SYSTEM_STATE = SYSTEM_STATE_Will;
-  // SYSTEN_RUN_PARAMETER.State_Time = 0;
-// }
 
 // /*
 // ********************************************************************************
@@ -515,14 +534,3 @@
 // * 修  改:
 // ********************************************************************************
 // */
-// void ResetLastTargetTest_Results(void)
-// {
-// //  Gun_Ctrl.ErrFlag.L_COMM = 0;
-// //  Gun_Ctrl.ErrFlag.R_COMM = 0;
-// //  Reader_Card_Ctrl.Err.COMM_OK = 0;
-// //  Zigbee_RX_Buffer.Flag.COMM_OK = 0;
-// //  Screen_RX_Buffer.Flag.COMM_OK = 0;
-// //  AUX_Ctrl.Flag.OK = 0;
-// //  AUX_Ctrl.Flag.MP3_AllReady = 0;
-// //  AUX_Ctrl.Flag.Voice_AllReady = 0;
-// }

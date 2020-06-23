@@ -6,28 +6,6 @@
 /*******************************************************************************
                                 全局变量
 *******************************************************************************/
-int uart_init(void)
-{
-    /* 初始化串口参数，如波特率、停止位等等 */
-    huart3.Instance = USART3;
-    huart3.Init.BaudRate   = 115200;
-    huart3.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
-    huart3.Init.Mode       = UART_MODE_TX_RX;
-    huart3.Init.OverSampling = UART_OVERSAMPLING_16;
-    huart3.Init.WordLength = UART_WORDLENGTH_8B;
-    huart3.Init.StopBits   = UART_STOPBITS_1;
-    huart3.Init.Parity     = UART_PARITY_NONE;
-
-    /* 初始化串口引脚等 */
-    if (HAL_UART_Init(&huart3) != HAL_OK)
-    {
-        while(1);
-    }
-
-    return 0;
-}
-
-//INIT_BOARD_EXPORT(uart_init);
 
 /******RingBuffer-Begin******/
 #define rt_ringbuffer_space_len(rb) ((rb)->buffer_size - rt_ringbuffer_data_len(rb))
@@ -152,9 +130,7 @@ rt_size_t rt_ringbuffer_getchar(struct rt_ringbuffer *rb, rt_uint8_t *ch)
 
     return 1;
 }
-
 /******RingBuffer-End******/
-
 
 /******IO Port******/
 rt_uint8_t uart_rx_buf[FinshUartRxBufLen] = {0};
@@ -208,7 +184,6 @@ void rt_hw_console_output(const char *str)
         }
         HAL_UART_Transmit(&huart3, (uint8_t *)(str + i), 1, 1);
     }
-//    HAL_UART_Transmit(&FinshUartHandle,(uint8_t *)str,rt_strlen(str),0xff);
 }
 
 void FinshUartIRQHandler(void)
@@ -240,10 +215,3 @@ void FinshUartIRQHandler(void)
     /* leave interrupt */
     rt_interrupt_leave();    //在中断中一定要调用这对函数，离开中断
 }
-
-void toggleLED(void)
-{
-    HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_15);
-}
-
-MSH_CMD_EXPORT(toggleLED,toggle The LED Light);

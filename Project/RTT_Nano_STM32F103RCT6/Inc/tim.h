@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * File Name          : USART.h
+  * File Name          : TIM.h
   * Description        : This file provides code for the configuration
-  *                      of the USART instances.
+  *                      of the TIM instances.
   ******************************************************************************
   ** This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -37,8 +37,8 @@
   ******************************************************************************
   */
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __usart_H
-#define __usart_H
+#ifndef __tim_H
+#define __tim_H
 #ifdef __cplusplus
  extern "C" {
 #endif
@@ -51,11 +51,8 @@
 
 /* USER CODE END Includes */
 
-extern UART_HandleTypeDef huart4;
-extern UART_HandleTypeDef huart5;
-extern UART_HandleTypeDef huart1;
-extern UART_HandleTypeDef huart2;
-extern UART_HandleTypeDef huart3;
+extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim8;
 
 /* USER CODE BEGIN Private defines */
 
@@ -63,12 +60,11 @@ extern UART_HandleTypeDef huart3;
 
 extern void _Error_Handler(char *, int);
 
-void MX_UART4_Init(void);
-void MX_UART5_Init(void);
-void MX_USART1_UART_Init(void);
-void MX_USART2_UART_Init(void);
-void MX_USART3_UART_Init(void);
-
+void MX_TIM1_Init(void);
+void MX_TIM8_Init(void);
+                        
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+                                        
 /* USER CODE BEGIN Prototypes */
 
 /* USER CODE END Prototypes */
@@ -76,7 +72,7 @@ void MX_USART3_UART_Init(void);
 #ifdef __cplusplus
 }
 #endif
-#endif /*__ usart_H */
+#endif /*__ tim_H */
 
 /**
   * @}

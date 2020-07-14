@@ -71,15 +71,16 @@ void rt_hw_board_init()
    HAL_Init();
    MX_GPIO_Init();
    MX_USART3_UART_Init();
-//   MX_CAN_Init();
-   MX_TIM1_Init();
-   MX_TIM8_Init();
    MX_UART4_Init();
    MX_UART5_Init();
    MX_USART1_UART_Init();
    MX_USART2_UART_Init();
+//   MX_CAN_Init();
+   MX_TIM1_Init();
+   MX_TIM8_Init();
+
    FinshIoInit();
-    
+   UART5IoInit();
     /* System Tick Configuration */
     _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
 

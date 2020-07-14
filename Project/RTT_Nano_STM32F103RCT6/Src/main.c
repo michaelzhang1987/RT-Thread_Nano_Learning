@@ -40,11 +40,12 @@
 #include "main.h"
 #include "stm32f1xx_hal.h"
 #include "can.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-#include "rtthread.h"
+#include "RTT_Nano_Include.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -80,27 +81,31 @@ int main(void)
   /* MCU Configuration----------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+//  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
 
   /* Configure the system clock */
-  SystemClock_Config();
+//  SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_UART5_Init();
-  MX_USART3_UART_Init();
-  MX_CAN_Init();
-  MX_UART4_Init();
+//  MX_GPIO_Init();
+//  MX_UART5_Init();
+//  MX_USART3_UART_Init();
+//  MX_CAN_Init();
+//  MX_UART4_Init();
+//  MX_TIM8_Init();
+//  MX_USART1_UART_Init();
+//  MX_USART2_UART_Init();
+//  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
+  SYS_START_TASK();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -111,17 +116,7 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-//    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_RESET);
-//    HAL_Delay(200);
-//    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_SET);
-//    HAL_Delay(200);
-    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_RESET);
-    //rt_kprintf("hello world\r\n");
-    rt_thread_mdelay(500);
-    HAL_GPIO_WritePin(GPIOA,GPIO_PIN_15,GPIO_PIN_SET);
-//    rt_kprintf("hello world\r\n");
-    rt_thread_mdelay(500);
-    
+   rt_thread_mdelay(10);
   }
   /* USER CODE END 3 */
 

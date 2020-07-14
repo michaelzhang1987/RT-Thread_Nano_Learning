@@ -173,16 +173,16 @@ void rt_hw_console_output(const char *str)
 {    rt_size_t i = 0, size = 0;
     char a = '\r';
 
-    __HAL_UNLOCK(&huart3);
+    __HAL_UNLOCK(&FinshUartHandle);
 
     size = rt_strlen(str);
     for (i = 0; i < size; i++)
     {
         if (*(str + i) == '\n')
         {
-            HAL_UART_Transmit(&huart3, (uint8_t *)&a, 1, 1);
+            HAL_UART_Transmit(&FinshUartHandle, (uint8_t *)&a, 1, 1);
         }
-        HAL_UART_Transmit(&huart3, (uint8_t *)(str + i), 1, 1);
+        HAL_UART_Transmit(&FinshUartHandle, (uint8_t *)(str + i), 1, 1);
     }
 }
 
@@ -214,4 +214,93 @@ void FinshUartIRQHandler(void)
 
     /* leave interrupt */
     rt_interrupt_leave();    //在中断中一定要调用这对函数，离开中断
+}
+
+void UART5IoInit(void)
+{
+    __HAL_UART_ENABLE_IT(&huart5, UART_IT_RXNE);
+}
+
+//void UART5_IRQHandler(void)
+//{
+//    int ch = -1;
+//    /* enter interrupt */
+//    rt_interrupt_enter();          //在中断中一定要调用这对函数，进入中断
+//
+//    if ((__HAL_UART_GET_FLAG(&(huart5), UART_FLAG_RXNE) != RESET) &&
+//        (__HAL_UART_GET_IT_SOURCE(&(huart5), UART_IT_RXNE) != RESET))
+//    {
+//        while (1)
+//        {
+//            ch = -1;
+//            if (__HAL_UART_GET_FLAG(&(huart5), UART_FLAG_RXNE) != RESET)
+//            {
+//                ch =  huart5.Instance->DR & 0xff;
+//            }
+//            if (ch == -1)
+//            {
+//                break;
+//            }  
+//            rt_mq_send(uart5_mq,&ch,1);
+//        }        
+//      
+//    }
+//
+//    /* leave interrupt */
+//    rt_interrupt_leave();    //在中断中一定要调用这对函数，离开中断
+//}
+
+void UART5_IRQHandler(void)
+{
+  GEEK_UART_IRQHandler(&huart5);
+}
+
+void GEEK_UART_IRQHandler(UART_HandleTypeDef *huart)
+{
+  int ch = 0;
+  /* enter interrupt */
+//  rt_interrupt_enter();          //在中断中一定要调用这对函数，进入中断
+  uint32_t isrflags   = READ_REG(huart->Instance->SR);
+  uint32_t cr1its     = READ_REG(huart->Instance->CR1);
+  uint32_t cr3its     = READ_REG(huart->Instance->CR3);
+  
+  /* UART in mode Receiver -------------------------------------------------*/
+  if(((isrflags & USART_SR_RXNE) != RESET) && ((cr1its & USART_CR1_RXNEIE) != RESET))
+  {
+    ch = (uint8_t)(huart->Instance->DR & (uint8_t)0x00FF);
+//    HAL_UART_RxCpltCallback(huart);
+    rt_mq_send(uart5_mq,&ch,1);
+    return;
+  }
+  
+//  /* UART in mode Transmitter ------------------------------------------------*/
+//  if(((isrflags & USART_SR_TXE) != RESET) && ((cr1its & USART_CR1_TXEIE) != RESET))
+//  {
+//    huart->Instance->DR = (uint8_t)(*huart->pTxBuffPtr++ & (uint8_t)0x00FF);
+//    if(--huart->TxXferCount == 0U)
+//    {
+//      /* Disable the UART Transmit Complete Interrupt */
+//      __HAL_UART_DISABLE_IT(huart, UART_IT_TXE);
+//      /* Enable the UART Transmit Complete Interrupt */    
+//      __HAL_UART_ENABLE_IT(huart, UART_IT_TC);
+//      huart->gState = HAL_UART_STATE_READY;//必有否则中断、DMA发送不了
+//    }
+//    return;
+//  }
+//  
+//  /* UART in mode Transmitter end --------------------------------------------*/
+//  if(((isrflags & USART_SR_TC) != RESET) && ((cr1its & USART_CR1_TCIE) != RESET))
+//  {
+//    __HAL_UART_DISABLE_IT(huart, UART_IT_TC);
+//    HAL_UART_TxCpltCallback(huart);
+//    return;
+//  }
+//  
+//  //清除过载错误(必须得有开串口接收中断时这个中断同时被开启)
+//  if(__HAL_UART_GET_FLAG(huart,UART_FLAG_ORE) != RESET)
+//  {
+//    __HAL_UART_CLEAR_OREFLAG(huart);
+//  }
+  /* leave interrupt */
+//  rt_interrupt_leave();    //在中断中一定要调用这对函数，离开中断
 }

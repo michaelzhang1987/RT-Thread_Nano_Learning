@@ -36,5 +36,6 @@
 // #include "Rail_Car_Master_CAN_COMM.h"
 // #include "Rail_Car_Master_MP3.h"
 // #include "Rail_Car_Master_Lottery.h"
-
+#include "General_Uart.h"
+#include "RTT_Can_Drv.h"
 #endif  //RTT_Nano_Include.h

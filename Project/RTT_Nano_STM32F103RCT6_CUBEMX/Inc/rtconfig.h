@@ -174,10 +174,12 @@
 // <c1>Using symbol table in finsh shell
 //  <i>Using symbol table in finsh shell
 #define FINSH_USING_SYMTAB
+
 // </c>
 // </h>
 //格式化输出FINSH打印结果 eg：help tab等
 #define FINSH_USING_DESCRIPTION
+
 #endif //RT_USING_FINSH
 
 // <<< end of configuration section >>>

@@ -1,5 +1,8 @@
-//#ifndef __RTT_Can_Drv_H
-//#define __RTT_Can_Drv_H
+#ifndef __RTT_Can_Drv_H
+#define __RTT_Can_Drv_H
+
+extern CAN_TxHeaderTypeDef   TxHeader;
+extern CAN_RxHeaderTypeDef   RxHeader;
 //
 ////***************can接收环形结构体****************//
 //
@@ -47,7 +50,7 @@
 //HAL_StatusTypeDef MGQ_CAN_Transmit(CAN_HandleTypeDef* hcan);
 ////CAN总初始化函数
 //void MGQ_CAN_INIT(void);
-//
-//
-//
-//#endif /* RTT_Can_Drv.h */
+//RTT_CAN总初始化函数
+int RTT_CAN_INIT(void);
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *CanHandle);
+#endif /* RTT_Can_Drv.h */

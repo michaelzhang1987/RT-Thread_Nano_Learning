@@ -177,7 +177,7 @@
 
 // </c>
 // </h>
-//æ ¼å¼åŒ–è¾“å‡ºFINSHæ‰“å°ç»“æžœ egï¼šhelp tabç­‰
+//¸ñÊ½»¯Êä³öFINSH´òÓ¡½á¹û eg£ºhelp tabµÈ
 #define FINSH_USING_DESCRIPTION
 
 #endif //RT_USING_FINSH

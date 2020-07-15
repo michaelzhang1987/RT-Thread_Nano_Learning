@@ -59,7 +59,8 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-
+uint8_t TxData[8] = {1,2,3,4,5,6,7,8};
+uint32_t TxMailbox;
 /* USER CODE END 0 */
 
 /**
@@ -109,7 +110,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    rt_thread_mdelay(10);
+    HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+    rt_thread_mdelay(200);
   }
   /* USER CODE END 3 */
 }

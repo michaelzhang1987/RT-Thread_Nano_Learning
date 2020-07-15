@@ -66,8 +66,9 @@ RT_WEAK void *rt_heap_end_get(void)
 void rt_hw_board_init()
 {
     /* System Clock Update */
-    SystemCoreClockUpdate();
-    
+//    SystemCoreClockUpdate();//无倍频 系统时钟最终为8M
+   SystemClock_Config();//有倍频 系统时钟最终为72M
+   
    HAL_Init();
    MX_GPIO_Init();
    MX_USART3_UART_Init();
@@ -75,12 +76,13 @@ void rt_hw_board_init()
    MX_UART5_Init();
    MX_USART1_UART_Init();
    MX_USART2_UART_Init();
-//   MX_CAN_Init();
+   MX_CAN_Init();
    MX_TIM1_Init();
    MX_TIM8_Init();
 
    FinshIoInit();
    UART5IoInit();
+//   RTT_CAN_INIT();
     /* System Tick Configuration */
     _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
 

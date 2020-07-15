@@ -1189,6 +1189,27 @@
         <name>Application</name>
         <group>
             <name>CODE</name>
+            <group>
+                <name>RTT</name>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\device.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\drv_gpio.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\drv_gpio.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\pin.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\pin.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\rtdevice.h</name>
+                </file>
+            </group>
             <file>
                 <name>$PROJ_DIR$\..\CODE\EEROM_STM32_Flash.c</name>
             </file>

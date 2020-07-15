@@ -9,7 +9,8 @@
 //#if defined(RTE_USING_FINSH)
 #define RT_USING_FINSH
 //#endif  //RTE_USING_FINSH
-
+#define RT_USING_DEVICE
+#define RT_USING_PIN
 //#endif  //(__CC_ARM) || (__CLANG_ARM)
 
 // <<< Use Configuration Wizard in Context Menu >>>

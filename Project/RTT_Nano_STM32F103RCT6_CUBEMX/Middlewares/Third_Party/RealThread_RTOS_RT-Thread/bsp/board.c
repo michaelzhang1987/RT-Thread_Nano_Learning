@@ -82,7 +82,7 @@ void rt_hw_board_init()
 
    FinshIoInit();
    UART5IoInit();
-   RTT_CAN_INIT();
+//   RTT_CAN_INIT();
     /* System Tick Configuration */
     _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
 

@@ -468,3 +468,40 @@ int mq_test_sample(void)
 }
 INIT_APP_EXPORT(mq_test_sample);
 MSH_CMD_EXPORT(mq_test_sample,mq_test_sample);
+
+#define LED_PIN_NUM 15    /*PA15*/
+#define RELAY_PIN_NUM 12  /*PA12*/
+
+void thread_drv_pin(void *para)
+{
+   while(1)
+  {
+    rt_pin_write(LED_PIN_NUM,PIN_HIGH);
+//    rt_pin_write(RELAY_PIN_NUM,PIN_LOW);
+    rt_kprintf("LED ON\r\n");
+    rt_thread_mdelay(500);
+    rt_pin_write(LED_PIN_NUM,PIN_LOW);
+//    rt_pin_write(RELAY_PIN_NUM,PIN_HIGH);
+    rt_kprintf("LED OFF\r\n");
+    rt_thread_mdelay(500);
+  }
+}
+
+//学到一招  系统中这种临时shell中执行的函数不能有死循环出现
+
+int Drv_Pin_Test_Sample(void)
+{
+  rt_pin_mode(LED_PIN_NUM,PIN_MODE_OUTPUT);
+  rt_pin_mode(RELAY_PIN_NUM,PIN_MODE_OUTPUT);
+  rt_pin_write(LED_PIN_NUM,PIN_LOW);
+  rt_pin_write(RELAY_PIN_NUM,PIN_HIGH);
+  rt_thread_t tid_pin = rt_thread_create("thread_drv_pin",
+                              thread_drv_pin,
+                              RT_NULL,
+                              512,
+                              3,
+                              10);
+  if(tid_pin != RT_NULL){rt_thread_startup(tid_pin);}
+  return 0;
+}
+MSH_CMD_EXPORT(Drv_Pin_Test_Sample,Drv_Pin_Test_Sample);

@@ -45,8 +45,15 @@ int RTT_CAN_INIT(void)
   HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
   return 0;
 }
-
 INIT_APP_EXPORT(RTT_CAN_INIT);
+
+rt_mq_t can_mq = RT_NULL;
+int RTT_CANInit(void)
+{
+  can_mq = rt_mq_create("can_mq",8,50,RT_IPC_FLAG_FIFO);
+  return 0;
+}
+INIT_APP_EXPORT(RTT_CANInit);
 /*
 ***************************************************************************************************
 * 函数名: void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
@@ -63,6 +70,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *CanHandle)
 
   if(HAL_CAN_GetRxMessage(CanHandle, CAN_RX_FIFO0, &RxHeader, aRxData) == HAL_OK)
   {
+    rt_mq_send(can_mq,aRxData,8);
   }
 //  if(HAL_CAN_GetRxMessage(CanHandle, CAN_RX_FIFO0, &CAN_RxBuffer.pWrite->CAN_RxHeader, &CAN_RxBuffer.pWrite->Data[0]) != HAL_OK)
 //  {
@@ -76,4 +84,57 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *CanHandle)
 //    }
 //  }
 }
+  uint8_t recv[8];
+void can_thread_recv_mq(void *para)
+{
+  static uint32_t cnt = 0;
+  while(1)
+  {
+    if(rt_mq_recv(can_mq,&recv,8,100) == RT_EOK)//RT_WAITING_FOREVER
+    {
+      if(RxHeader.IDE==CAN_ID_STD && RxHeader.RTR == CAN_RTR_DATA)
+      {
+        if(RxHeader.StdId == 0x01)
+        {
+//            for(uint8_t i=0;i<8;i++)
+//            {
+//              rt_kprintf("%d ",recv[i]);
+//            }
+//            rt_kprintf("\n");
+          if(recv[0] == 0x055)
+          {
+            if(recv[1] == 0xaa)
+            {
+              if(recv[2]==0x01)
+              {
+                  RELAY_ON();
+                  cnt+=1;
+                  rt_kprintf("cantest_count=%d\n",cnt);
+              }
+              else if(recv[2]==0x02)
+              {
+                  RELAY_OFF();
+                  cnt+=1;
+                  rt_kprintf("cantest_count=%d\n",cnt);
+               }
+            }
+          }   
+        }
+      }
+    }
+  }
+}
 
+int CAN_test_Sample(void)
+{
+  rt_thread_t can_tid = rt_thread_create("can_thread",
+                                      can_thread_recv_mq,
+                                      RT_NULL,
+                                      512,
+                                      7,
+                                      10);
+  if(can_tid != RT_NULL){rt_thread_startup(can_tid);}
+
+  return 0;
+}
+INIT_APP_EXPORT(CAN_test_Sample);

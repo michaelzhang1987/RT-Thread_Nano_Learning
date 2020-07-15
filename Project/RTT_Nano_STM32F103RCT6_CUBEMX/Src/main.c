@@ -110,7 +110,13 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
+//    TxHeader.StdId = 0x321;
+//    TxHeader.ExtId = 0x01;
+//    TxHeader.RTR = CAN_RTR_DATA;
+//    TxHeader.IDE = CAN_ID_STD;
+//    TxHeader.DLC = 8;
+//    TxHeader.TransmitGlobalTime = DISABLE;
+//    HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);
     rt_thread_mdelay(200);
   }
   /* USER CODE END 3 */

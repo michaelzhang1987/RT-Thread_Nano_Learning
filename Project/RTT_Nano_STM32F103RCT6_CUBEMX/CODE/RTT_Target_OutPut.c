@@ -369,13 +369,13 @@ void thread1_recv_mq(void *para)
                 {
                   RELAY_ON();
                   cnt+=5;
-                  rt_kprintf("count=%d\n",cnt);
+                  rt_kprintf("uart5count=%d\n",cnt);
                 }
                 else if(buff[3]==0x02)
                 {
                   RELAY_OFF();
                   cnt+=5;
-                  rt_kprintf("count=%d\n",cnt);
+                  rt_kprintf("uart5count=%d\n",cnt);
                 }
               }
             }

@@ -18,6 +18,7 @@
 #include <rtthread.h>
 #include "rtdevice.h"
 #include "pwm_config.h"
+#include "uart_config.h"
 #include "string.h"
 //#include "RTT_Uart_Console.h"
 #include "RTT_Uart_Console_IT.h"

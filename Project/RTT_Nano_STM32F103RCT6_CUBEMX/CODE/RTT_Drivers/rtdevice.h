@@ -15,14 +15,14 @@
 //#include <rtthread.h>
 #include "RTT_Nano_Include.h"
 
-//#include "ipc/ringbuffer.h"
-//#include "ipc/completion.h"
-//#include "ipc/dataqueue.h"
-//#include "ipc/workqueue.h"
-//#include "ipc/waitqueue.h"
-//#include "ipc/pipe.h"
-//#include "ipc/poll.h"
-//#include "ipc/ringblk_buf.h"
+//#include "ringbuffer.h"
+#include "completion.h"
+#include "dataqueue.h"
+#include "workqueue.h"
+#include "waitqueue.h"
+#include "pipe.h"
+#include "poll.h"
+#include "ringblk_buf.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -58,7 +58,7 @@ extern "C" {
 #endif /* RT_USING_USB_HOST */
 
 #ifdef RT_USING_SERIAL
-#include "drivers/serial.h"
+#include "serial.h"
 #endif /* RT_USING_SERIAL */
 
 #ifdef RT_USING_I2C

@@ -16,9 +16,11 @@
 #define RT_USING_PIN
 
 #define RT_USING_PWM
-
 #define BSP_USING_PWM1
 #define BSP_USING_PWM8
+
+#define RT_USING_SERIAL
+#define BSP_USING_UART4
 
 //#endif  //(__CC_ARM) || (__CLANG_ARM)
 

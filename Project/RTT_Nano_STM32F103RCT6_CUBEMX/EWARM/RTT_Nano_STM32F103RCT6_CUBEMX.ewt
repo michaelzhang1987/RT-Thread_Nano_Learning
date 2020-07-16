@@ -1192,6 +1192,12 @@
             <group>
                 <name>RTT</name>
                 <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\completion.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\dataqueue.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\device.c</name>
                 </file>
                 <file>
@@ -1204,6 +1210,12 @@
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\drv_pwm.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\drv_usart.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\drv_usart.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\pin.c</name>
                 </file>
                 <file>
@@ -1213,6 +1225,9 @@
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\pwm_config.h</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\ringblk_buf.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\rt_drv_pwm.c</name>
                 </file>
                 <file>
@@ -1220,6 +1235,18 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\rtdevice.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\serial.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\serial.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\uart_config.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\waitqueue.c</name>
                 </file>
             </group>
             <file>

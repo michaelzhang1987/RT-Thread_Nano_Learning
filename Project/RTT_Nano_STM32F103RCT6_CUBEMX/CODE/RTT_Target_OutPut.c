@@ -505,3 +505,75 @@ int Drv_Pin_Test_Sample(void)
   return 0;
 }
 MSH_CMD_EXPORT(Drv_Pin_Test_Sample,Drv_Pin_Test_Sample);
+
+#define PWM_DEV_NAME           "pwm8"  /* PWM设备名称 */
+#define PWM_DEV_CHANNEL         2       /* PWM通道 */
+#define THREAD_PRIORITY         25      /* 线程优先级 */
+#define THREAD_STACK_SIZE       512     /* 线程栈大小 */
+#define THREAD_TIMESLICE        5       /* 线程时间片大小 */
+
+static rt_thread_t tid1 = RT_NULL;      /* 线程句柄 */
+struct rt_device_pwm *pwm_dev;          /* PWM设备句柄 */
+static rt_uint32_t period = 500000;     /* 周期为0.5ms，单位为纳秒ns */
+static rt_uint32_t pulse = 0;           /* PWM脉冲宽度值的增减方向 */
+static rt_uint32_t dir = 1;             /* PWM脉冲宽度值，单位为纳秒ns */
+
+
+/* 线程 pwm_entry 的入口函数 */
+static void pwm_entry(void *parameter)
+{
+     while (1)
+    {
+        rt_thread_mdelay(50);
+        if (dir)
+        {
+            pulse += 10000;      /* 从0值开始每次增加5000ns */
+        }
+        else
+        {
+            pulse -= 10000;      /* 从最大值开始每次减少5000ns */
+        }
+        if (pulse >= period)
+        {
+            dir = 0;
+        }
+        if (0 == pulse)
+        {
+            dir = 1;
+        }
+ 
+        /* 设置PWM周期和脉冲宽度 */
+        rt_pwm_set(pwm_dev, PWM_DEV_CHANNEL, period, pulse);
+    }
+}
+
+static int pwm_test(int argc, char *argv[])
+{
+    /* step 1.1、查找 PWM 设备 */
+    pwm_dev = (struct rt_device_pwm *)rt_device_find(PWM_DEV_NAME);
+    if (pwm_dev == RT_NULL)
+    {
+        rt_kprintf("pwm sample run failed! can't find %s device!\n", PWM_DEV_NAME);
+        return RT_ERROR;
+    }
+
+    /* step 1.2、设置 PWM 周期和脉冲宽度默认值 */
+    rt_pwm_set(pwm_dev, PWM_DEV_CHANNEL, period, pulse);
+    /* step 1.3、使能 PWM 设备的输出通道 */
+    rt_pwm_enable(pwm_dev, PWM_DEV_CHANNEL);
+
+    /* 创建线程，名称是 pwm_thread ，入口是 pwm_entry*/
+    tid1 = rt_thread_create("pwm_thread",
+                             pwm_entry,
+                             RT_NULL,
+                             THREAD_STACK_SIZE,
+                             THREAD_PRIORITY,
+                            THREAD_TIMESLICE);
+
+    /* 如果获得线程控制块，启动这个线程 */
+    if (tid1 != RT_NULL)rt_thread_startup(tid1);
+
+    return RT_EOK;
+}
+/* 导出到 msh 命令列表中 */
+MSH_CMD_EXPORT(pwm_test, pwm sample);

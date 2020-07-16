@@ -135,7 +135,7 @@
                                        OUTPUT_THREAD_STACK_SIZE,        /* 任务堆栈            */
                                        OUTPUT_THREAD_PRIORITY,          /* 任务优先级          */
                                        OUTPUT_THREAD_TIMESLICE);        /* 时间片             */
-    if(tid1 != RT_NULL) {rt_thread_startup(tid1);}
+//    if(tid1 != RT_NULL) {rt_thread_startup(tid1);}
     
     /* 空闲控制任务 */
     rt_thread_t tid2 = rt_thread_create("Free_Ctrl",                   /* 任务名称            */
@@ -144,7 +144,7 @@
                                        FREE_THREAD_STACK_SIZE,         /* 任务堆栈            */
                                        FREE_THREAD_PRIORITY,           /* 任务优先级          */
                                        FREE_THREAD_TIMESLICE);         /* 时间片             */
-    if(tid2 != RT_NULL) {rt_thread_startup(tid1);}
+    if(tid2 != RT_NULL) {rt_thread_startup(tid2);}
 
    switch (SYSTEN_RUN_PARAMETER.Target_ID)
    {

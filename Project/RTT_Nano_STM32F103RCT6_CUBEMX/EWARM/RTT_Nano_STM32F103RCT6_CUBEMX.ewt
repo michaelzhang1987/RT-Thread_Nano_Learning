@@ -1201,10 +1201,22 @@
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\drv_gpio.h</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\drv_pwm.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\pin.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\pin.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\pwm_config.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\rt_drv_pwm.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\CODE\RTT_Drivers\rt_drv_pwm.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\CODE\RTT_Drivers\rtdevice.h</name>

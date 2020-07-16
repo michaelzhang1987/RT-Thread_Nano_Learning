@@ -77,7 +77,7 @@ extern "C" {
 #endif
 
 #ifdef RT_USING_WDT
-#include "drivers/watchdog.h"
+#include "watchdog.h"
 #endif
 
 #ifdef RT_USING_PIN
@@ -85,7 +85,7 @@ extern "C" {
 #endif
 
 #ifdef RT_USING_CAN
-#include "drivers/can.h"
+#include "can.h"
 #endif
 
 #ifdef RT_USING_HWTIMER
@@ -105,7 +105,7 @@ extern "C" {
 #endif
 
 #ifdef RT_USING_PWM
-#include "drivers/rt_drv_pwm.h"
+#include "rt_drv_pwm.h"
 #endif
 
 #ifdef RT_USING_PM

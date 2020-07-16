@@ -9,8 +9,17 @@
 //#if defined(RTE_USING_FINSH)
 #define RT_USING_FINSH
 //#endif  //RTE_USING_FINSH
+
+
+#define SOC_SERIES_STM32F1
 #define RT_USING_DEVICE
 #define RT_USING_PIN
+
+#define RT_USING_PWM
+
+#define BSP_USING_PWM1
+#define BSP_USING_PWM8
+
 //#endif  //(__CC_ARM) || (__CLANG_ARM)
 
 // <<< Use Configuration Wizard in Context Menu >>>
